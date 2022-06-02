@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'oj'
+require 'json/ext'
 require 'optparse'
 
 HELP=<<EOF
@@ -77,7 +77,7 @@ key  = opts[:key]
 skey = opts[:subkey]
 
 $stdin.each_line do |line|
-  json = Oj.load(line.to_s.unpack("C*").pack("C*").strip) rescue nil
+  json = JSON.parse(line.to_s.unpack("C*").pack("C*").strip) rescue nil
   next unless ( json && json[key] )
 
   if json[key].kind_of?(Array)
@@ -123,4 +123,4 @@ summary.keys.sort{|a,b| summary[b][:count] <=> summary[a][:count] }[0, opts[:num
   end
 end
 
-$stdout.puts Oj.dump(output)
+$stdout.puts JSON.generate(output)

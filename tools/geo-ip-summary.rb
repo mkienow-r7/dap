@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'oj'
+require 'json/ext'
 require 'optparse'
 
 class GeoIPSummary
@@ -153,11 +153,11 @@ summarizer = GeoIPSummary.new(opts[:country], opts[:region], opts[:city])
 
 
 $stdin.each_line do |line|
-  json = Oj.load(line.unpack("C*").pack("C*").strip) rescue nil
+  json = JSON.parse(line.unpack("C*").pack("C*").strip) rescue nil
   next unless json
   summarizer.process_hash(json)
 end
 
 Oj.default_options={:indent=>2}
 
-puts Oj.dump(summarizer.order_tree)
+puts JSON.generate(summarizer.order_tree)

@@ -1,7 +1,7 @@
 require 'digest/sha1'
 require 'digest/md5'
 require 'digest/sha2'
-require 'json'
+require 'json/ext'
 
 module Dap
 module Filter

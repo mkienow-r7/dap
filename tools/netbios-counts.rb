@@ -2,8 +2,7 @@
 
 require 'optparse'
 require 'ostruct'
-require 'oj'
-require 'json'
+require 'json/ext'
 
 options = OpenStruct.new
 options.top_count = 5
@@ -267,7 +266,7 @@ end
 counters << HostnameContainingCounter.new(options.hostname_containing) unless options.hostname_containing.nil?
 
 $stdin.each_line do |line|
-  json = Oj.load(line.unpack("C*").pack("C*").strip) rescue nil
+  json = JSON.parse(line.unpack("C*").pack("C*").strip) rescue nil
   next unless json
   counters.each { |counter| counter.count(json) }
 end

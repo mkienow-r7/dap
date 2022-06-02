@@ -1,7 +1,7 @@
 module Dap
 module Input
 
-  require 'oj'
+  require 'json/ext'
 
   #
   # Error codes for failed reads
@@ -62,7 +62,7 @@ module Input
       line = self.fd.readline rescue nil
       return Error::EOF unless line
       begin
-        json = Oj.load(line.strip, mode: :strict)
+        json = JSON.parse(line.strip)
       rescue
         $stderr.puts "Record is not valid JSON and will be skipped: '#{line.chomp}'"
         return Error::InvalidFormat

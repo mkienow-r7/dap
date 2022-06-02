@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'oj'
+require 'json/ext'
 
 # Searches contains each of the services, within each service it contains
 # a hash key that will be compared against each of the items in the
@@ -29,7 +29,7 @@ def search(hash, service)
 end
 
 $stdin.each_line do |line|
-  json = Oj.load(line.unpack("C*").pack("C*").strip) rescue nil
+  json = JSON.parse(line.unpack("C*").pack("C*").strip) rescue nil
   next unless json
-  puts Oj.dump(search(json, :upnp))
+  puts JSON.generate(search(json, :upnp))
 end

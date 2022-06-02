@@ -33,11 +33,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'aruba'
 
   s.add_runtime_dependency 'nokogiri'
-  s.add_runtime_dependency 'oj'
+  s.add_runtime_dependency 'json'
   s.add_runtime_dependency 'htmlentities'
   s.add_runtime_dependency 'net-dns'
   s.add_runtime_dependency 'bit-struct'
-  s.add_runtime_dependency 'geoip-c'
+  s.add_runtime_dependency 'geoip'
   s.add_runtime_dependency 'recog'
   s.add_runtime_dependency 'maxmind-db'
 end

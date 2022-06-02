@@ -1,4 +1,4 @@
-require 'oj'
+require 'json/ext'
 require 'csv'
 
 
@@ -140,7 +140,7 @@ module Output
     end
 
     def write_record(doc)
-      self.fd.puts Oj.dump(sanitize(doc), mode: :strict)
+      self.fd.puts JSON.generate(sanitize(doc))
       self.fd.flush
     end
 

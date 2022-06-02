@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'oj'
+require 'json/ext'
 
 SEARCHES = {
   "data.ipmi_compat_password"           => { value: "1", name: "straight-pass" },
@@ -23,7 +23,7 @@ def search(hash)
 end
 
 $stdin.each_line do |line|
-  json = Oj.load(line.unpack("C*").pack("C*").strip) rescue nil
+  json = JSON.parse(line.unpack("C*").pack("C*").strip) rescue nil
   next unless json
-  puts Oj.dump(search(json))
+  puts JSON.generate(search(json))
 end

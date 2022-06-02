@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'oj'
+gem 'json'
 gem 'htmlentities'
 gem 'net-dns'
 gem 'bit-struct'
-gem 'geoip-c'
+gem 'geoip'
 gem 'maxmind-db', '~> 1.0.0'
 gem 'recog', '>= 2.3.21'
 
